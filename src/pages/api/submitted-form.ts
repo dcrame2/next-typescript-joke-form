@@ -11,17 +11,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // const responseJokeData = await axios
-  //   .get("https://v2.jokeapi.dev/joke/Any", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   })
-  //   .then((response) => console.log(response.data.joke));
-
   let responseJokeData;
-
   try {
     const response = await axios.get(
       "https://v2.jokeapi.dev/joke/Any?type=single",
@@ -35,9 +25,6 @@ export default async function handler(
 
     if (response.data.joke) {
       responseJokeData = response.data.joke;
-      console.log(responseJokeData); // Log the joke data
-      // Use responseJokeData elsewhere in your code
-      // For example, you can pass it to a function, display it on a webpage, etc.
     } else {
       console.error("No joke found in the API response");
     }
@@ -61,13 +48,9 @@ export default async function handler(
     from: '"Dylan" <fuckme@gmail.com>',
     to: "dcrame2@gmail.com",
     subject: "Next/TypeScript/Joke Form",
-    // text: "Bro just give up on coding",
     html: `First Name: ${req.body.enteredFirstName} <br/> Last Name: ${req.body.enteredLastName} <br/> Message: ${req.body.enteredMessage} <br /> Funny Joke: ${responseJokeData}`,
     headers: { "x-myheader": "test header" },
   });
   console.log("Message sent: %s", info.response);
-
-  console.log(req.body);
-  //   const {enteredFirstName, enteredLastName, enteredMessage} = req.body;
   res.status(200).json({ message: "You submitted the form successfully!" });
 }
