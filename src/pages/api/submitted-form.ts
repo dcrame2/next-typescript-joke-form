@@ -45,10 +45,10 @@ export default async function handler(
   });
 
   const info = await transporter.sendMail({
-    from: '"Dylan" <fuckme@gmail.com>',
-    to: "dcrame2@gmail.com",
+    from: '"Form + Joke"',
+    to: `${req.body.enteredEmail}`,
     subject: "Next/TypeScript/Joke Form",
-    html: `First Name: ${req.body.enteredFirstName} <br/> Last Name: ${req.body.enteredLastName} <br/> Message: ${req.body.enteredMessage} <br /> Funny Joke: ${responseJokeData}`,
+    html: `First Name: ${req.body.enteredFirstName} <br/> Last Name: ${req.body.enteredLastName} <br/> Email: ${req.body.enteredEmail}<br/> Message: ${req.body.enteredMessage} <br /> Funny Joke: ${responseJokeData}`,
     headers: { "x-myheader": "test header" },
   });
   console.log("Message sent: %s", info.response);

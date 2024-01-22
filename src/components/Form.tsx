@@ -31,6 +31,7 @@ const Form: React.FC = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const [responseMessage, setResponseMessage] = useState("");
   //   console.log(firstNameRef.current!.value);
 
@@ -38,8 +39,14 @@ const Form: React.FC = () => {
     e.preventDefault();
     const enteredFirstName: string = firstNameRef.current!.value;
     const enteredLastName: string = lastNameRef.current!.value;
+    const enteredEmail: string = emailRef.current!.value;
     const enteredMessage: string = messageRef.current!.value;
-    console.log(enteredFirstName, enteredLastName, enteredMessage);
+    console.log(
+      enteredFirstName,
+      enteredLastName,
+      enteredEmail,
+      enteredMessage
+    );
 
     fetch("/api/submitted-form", {
       method: "POST",
@@ -49,6 +56,7 @@ const Form: React.FC = () => {
       body: JSON.stringify({
         enteredFirstName,
         enteredLastName,
+        enteredEmail,
         enteredMessage,
       }),
     })
@@ -84,6 +92,10 @@ const Form: React.FC = () => {
               name="lastName"
               ref={lastNameRef}
             />
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <label htmlFor="email">Email</label>
+            <Input type="email" id="email" name="email" ref={emailRef} />
           </LabelInputContainer>
           <LabelInputContainer>
             <label htmlFor="message">Message</label>
