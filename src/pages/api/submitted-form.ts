@@ -48,8 +48,8 @@ export default async function handler(
     secure: false,
     requireTLS: true,
     auth: {
-      user: `dcrame2@gmail.com`,
-      pass: `xwit skzx myso bjqg`,
+      user: `${process.env.GOOGLE_USERNAME}`,
+      pass: `${process.env.GOOGLE_API_CODE}`,
     },
     logger: true,
   });
