@@ -5,7 +5,6 @@ const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* align-items: center; */
 `;
 
 const LabelInputContainer = styled.div`
@@ -33,7 +32,6 @@ const Form: React.FC = () => {
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const [responseMessage, setResponseMessage] = useState("");
-  //   console.log(firstNameRef.current!.value);
 
   function submitHandler(e: React.FormEvent) {
     e.preventDefault();
