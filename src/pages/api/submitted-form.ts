@@ -23,12 +23,15 @@ export default async function handler(
   let responseJokeData;
 
   try {
-    const response = await axios.get("https://v2.jokeapi.dev/joke/Any", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    const response = await axios.get(
+      "https://v2.jokeapi.dev/joke/Any?type=single",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
 
     if (response.data.joke) {
       responseJokeData = response.data.joke;
@@ -57,8 +60,8 @@ export default async function handler(
   const info = await transporter.sendMail({
     from: '"Dylan" <fuckme@gmail.com>',
     to: "dcrame2@gmail.com",
-    subject: "Next/TypeScript Form",
-    text: "Bro just give up on coding",
+    subject: "Next/TypeScript/Joke Form",
+    // text: "Bro just give up on coding",
     html: `First Name: ${req.body.enteredFirstName} <br/> Last Name: ${req.body.enteredLastName} <br/> Message: ${req.body.enteredMessage} <br /> Funny Joke: ${responseJokeData}`,
     headers: { "x-myheader": "test header" },
   });
